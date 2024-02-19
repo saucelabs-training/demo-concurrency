@@ -1,0 +1,26 @@
+name: Team 2
+
+on:
+  workflow_dispatch:
+    inputs:
+      parallel:
+        description: "Parallel"
+        default: "50"
+      duration:
+        description: "Duration"
+        default: "15"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Run testng tests
+      env:
+        SAUCE_USERNAME: ${{ secrets.TEAM2_USERNAME }}
+        SAUCE_ACCESS_KEY: ${{ secrets.TEAM2_ACCESS_KEY }}
+      run: mvn test -Dsurefire.parallel=${{ github.event.inputs.parallel }} -Dtest.duration=${{ github.event.inputs.duration }}
