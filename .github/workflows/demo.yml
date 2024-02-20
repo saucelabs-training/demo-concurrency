@@ -13,10 +13,10 @@ on:
         description: "Team"
         required: true
         type: choice
-        default: "Team 1"
+        default: "Team 3"
         options:
-          - Team 3
-          - Team 5
+          - "Team 3"
+          - "Team 5"
 
 jobs:
   build:
@@ -30,10 +30,10 @@ jobs:
     - name: Set Environment Secret
       id: set_env
       run: |
-        if [[ "${{ github.event.inputs.environment }}" == "Team 3" ]]; then
+        if [[ "${{ github.event.inputs.team }}" == "Team 3" ]]; then
           echo "SAUCE_USERNAME=${{ secrets.TEAM3_USERNAME }}" >> $GITHUB_ENV
           echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM3_ACCESS_KEY }}" >> $GITHUB_ENV
-        elif [[ "${{ github.event.inputs.environment }}" == "Team 5" ]]; then
+        elif [[ "${{ github.event.inputs.team }}" == "Team 5" ]]; then
           echo "SAUCE_USERNAME=${{ secrets.TEAM5_USERNAME }}" >> $GITHUB_ENV
           echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM5_ACCESS_KEY }}" >> $GITHUB_ENV
         fi
