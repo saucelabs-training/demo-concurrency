@@ -22,7 +22,6 @@
     <properties>
         <surefire.parallel>100</surefire.parallel>
         <selenium.version>4.17.0</selenium.version>
-        <selenium.version>4.17.0</selenium.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

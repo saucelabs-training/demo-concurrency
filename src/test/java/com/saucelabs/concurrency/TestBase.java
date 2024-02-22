@@ -25,11 +25,17 @@ public class TestBase {
   @RegisterExtension public SauceTestWatcher watcher = new SauceTestWatcher();
   protected TestInfo testInfo;
   protected SessionId id;
+  private static final String buildName;
+  private static final String buildNumber;
 
   static {
-    String buildName = "Concurrency Demo";
-    String buildNumber = String.valueOf(System.currentTimeMillis());
-    System.setProperty("build.name", buildName + ": " + buildNumber);
+    if (System.getenv("GITHUB_WORKFLOW") != null) {
+      buildName = System.getenv("GITHUB_WORKFLOW");
+      buildNumber = System.getenv("GITHUB_RUN_NUMBER");
+    } else {
+      buildName = "Concurrency Demo";
+      buildNumber = String.valueOf(System.currentTimeMillis());
+    }
   }
 
   public void startWindowsSession(TestInfo testInfo) {
@@ -69,7 +75,7 @@ public class TestBase {
     options.put("username", System.getenv("SAUCE_USERNAME"));
     options.put("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
     options.put("name", testInfo.getDisplayName());
-    options.put("build", System.getProperty("build.name"));
+    options.put("build", buildName + ": " + buildNumber);
     options.put("seleniumVersion", System.getProperty("selenium.version"));
     return options;
   }
