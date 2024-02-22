@@ -1,73 +1,65 @@
 package com.saucelabs.concurrency;
 
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
 
-public class Windows4Test extends TestBase {
-
-  @BeforeEach
-  public void setup(TestInfo testInfo) {
-    startWindowsSession(testInfo);
-  }
+public class Feature9Test extends TestBase {
 
   @Test
-  public void win4Test0() {
+  public void feature9Test0() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void win4Test1() {
+  public void feature9Test1() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void win4Test2() {
+  public void feature9Test2() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void win4Test3() {
+  public void feature9Test3() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void win4Test4() {
+  public void feature9Test4() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void win4Test5() {
+  public void feature9Test5() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void win4Test6() {
+  public void feature9Test6() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void win4Test7() {
+  public void feature9Test7() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void win4Test8() {
+  public void feature9Test8() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void win4Test9() {
+  public void feature9Test9() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }

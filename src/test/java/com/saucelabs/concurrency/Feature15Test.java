@@ -1,73 +1,65 @@
 package com.saucelabs.concurrency;
 
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
 
-public class Mac7Test extends TestBase {
-
-  @BeforeEach
-  public void setup(TestInfo testInfo) {
-    startMacSession(testInfo);
-  }
+public class Feature15Test extends TestBase {
 
   @Test
-  public void mac7Test0() {
+  public void feature15Test0() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void mac7Test1() {
+  public void feature15Test1() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void mac7Test2() {
+  public void feature15Test2() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void mac7Test3() {
+  public void feature15Test3() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void mac7Test4() {
+  public void feature15Test4() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void mac7Test5() {
+  public void feature15Test5() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void mac7Test6() {
+  public void feature15Test6() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void mac7Test7() {
+  public void feature15Test7() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void mac7Test8() {
+  public void feature15Test8() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }
 
   @Test
-  public void mac7Test9() {
+  public void feature15Test9() {
     driver.get("https://www.saucedemo.com/");
     loopCommands();
   }

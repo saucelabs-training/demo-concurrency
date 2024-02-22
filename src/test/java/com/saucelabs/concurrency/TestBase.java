@@ -5,7 +5,9 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.IntStream;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -35,6 +37,17 @@ public class TestBase {
     } else {
       buildName = "Concurrency Demo";
       buildNumber = String.valueOf(System.currentTimeMillis());
+    }
+  }
+  
+  @BeforeEach
+  public void setUp(TestInfo testInfo) {
+    this.testInfo = testInfo;
+
+    if (new Random().nextBoolean() && Boolean.getBoolean("tests.mixed")) {
+      startMacSession(testInfo);
+    } else {
+      startWindowsSession(testInfo);
     }
   }
 
@@ -81,8 +94,13 @@ public class TestBase {
   }
 
   protected void loopCommands() {
-    long seconds = Long.parseLong(System.getProperty("test.duration"));
-    loopCommands(Duration.ofSeconds(seconds));
+    if (System.getProperty("test.duration") != null) {
+      long seconds = Long.parseLong(System.getProperty("test.duration"));
+      loopCommands(Duration.ofSeconds(seconds));
+    } else {
+      int randomDuration = new Random().nextInt(30 - 10 + 1) + 10;
+      loopCommands(Duration.ofSeconds(randomDuration));
+    }
   }
   protected void loopCommands(Duration duration) {
     int l = (int) Math.round(duration.toSeconds() / 5.0);
