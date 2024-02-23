@@ -4,6 +4,10 @@ name: Demonstrate Loophole
 
 on:
   workflow_dispatch:
+    inputs:
+      parallel:
+        description: "Parallel"
+        default: "100"
 
 jobs:
   build:
@@ -20,4 +24,4 @@ jobs:
         echo "SAUCE_USERNAME=${{ secrets.TEAM1_USERNAME }}" >> $GITHUB_ENV
         echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM1_ACCESS_KEY }}" >> $GITHUB_ENV
     - name: Run Demo
-      run: mvn test -Dtests.mixed=true -Dsurefire.parallel=120
+      run: mvn test -Dtests.mixed=true -Dsurefire.parallel=${{ github.event.inputs.parallel }}
