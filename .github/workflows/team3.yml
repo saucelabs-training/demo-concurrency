@@ -3,10 +3,6 @@ name: Team 3 Tests
 
 on:
   workflow_dispatch:
-    inputs:
-      parallel:
-        description: "Parallel"
-        default: "30"
   workflow_run:
     workflows: [ "Multiple Teams Simultaneously" ]
     types:
@@ -27,4 +23,4 @@ jobs:
         echo "SAUCE_USERNAME=${{ secrets.TEAM3_USERNAME }}" >> $GITHUB_ENV
         echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM3_ACCESS_KEY }}" >> $GITHUB_ENV
     - name: Run Demo
-      run: mvn test -Dsurefire.parallel=${{ github.event.inputs.parallel }}
+      run: mvn test -Dsurefire.parallel=30
