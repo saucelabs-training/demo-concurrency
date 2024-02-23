@@ -1,0 +1,30 @@
+name: Team 5 Tests
+# Runs 50 Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      parallel:
+        description: "Parallel"
+        default: "50"
+  workflow_run:
+    workflows: [ "Multiple Teams Simultaneously" ]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Set Environment Secret
+      id: set_env
+      run: |
+        echo "SAUCE_USERNAME=${{ secrets.TEAM5_USERNAME }}" >> $GITHUB_ENV
+        echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM5_ACCESS_KEY }}" >> $GITHUB_ENV
+    - name: Run Demo
+      run: mvn test -Dsurefire.parallel=${{ github.event.inputs.parallel }}
