@@ -1,5 +1,5 @@
 name: Multiple Teams Simultaneously
-# This demosntrates flexing on flex accounts
+# This demonstrates flexing on flex accounts
 
 on:
   workflow_dispatch:

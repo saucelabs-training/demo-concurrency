@@ -1,10 +1,10 @@
-name: Team 3 Tests
-# Runs 30 Tests
+name: Team 2 Tests
+# Runs 20 Tests
 
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: [ "Multiple Teams Simultaneously", "Multiple Teams Limited" ]
+    workflows: [ "Multiple Teams Limited" ]
     types:
       - completed
 
@@ -20,7 +20,7 @@ jobs:
     - name: Set Environment Secret
       id: set_env
       run: |
-        echo "SAUCE_USERNAME=${{ secrets.TEAM3_USERNAME }}" >> $GITHUB_ENV
-        echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM3_ACCESS_KEY }}" >> $GITHUB_ENV
+        echo "SAUCE_USERNAME=${{ secrets.TEAM2_USERNAME }}" >> $GITHUB_ENV
+        echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM2_ACCESS_KEY }}" >> $GITHUB_ENV
     - name: Run Demo
-      run: mvn test -Dsurefire.parallel=30
+      run: mvn test -Dsurefire.parallel=20
