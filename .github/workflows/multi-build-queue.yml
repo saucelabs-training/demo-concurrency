@@ -1,0 +1,11 @@
+name: Multiple Build Queue
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger other workflows
+        run: echo "Run build1.yml, build2.yml, and build3.yml."
