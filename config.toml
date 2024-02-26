@@ -1,0 +1,10 @@
+[node]
+  detect-drivers = false
+  
+  [relay]
+  url = "https://ondemand.us-west-1.saucelabs.com:443/wd/hub"
+  configs = [
+  "25", '{"browserName": "chrome", "platformName": "Windows 11", "browserVersion": "latest"}',
+  "25", '{"browserName": "chrome", "platformName": "macOS 13", "browserVersion": "latest"}',
+]
+
