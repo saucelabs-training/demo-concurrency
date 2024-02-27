@@ -22,4 +22,4 @@ jobs:
         echo "SAUCE_USERNAME=${{ secrets.TEAM3_USERNAME }}" >> $GITHUB_ENV
         echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM3_ACCESS_KEY }}" >> $GITHUB_ENV
     - name: Run Demo
-      run: mvn test -Dsurefire.parallel=100
+      run: mvn test -Dsurefire.parallel=50
