@@ -1,5 +1,11 @@
 package com.saucelabs.concurrency;
 
+import com.saucelabs.saucerest.DataCenter;
+import com.saucelabs.saucerest.SauceREST;
+import com.saucelabs.saucerest.api.AccountsEndpoint;
+import com.saucelabs.saucerest.model.accounts.Organization;
+import com.saucelabs.saucerest.model.accounts.UserConcurrency;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -42,11 +48,33 @@ public class TestBase {
       buildNumber = String.valueOf(System.currentTimeMillis());
     }
   }
-  
-  @BeforeEach
-  public void setUp(TestInfo testInfo) {
-    this.testInfo = testInfo;
 
+  @BeforeEach
+  public void setUp(TestInfo testInfo) throws IOException, InterruptedException {
+    this.testInfo = testInfo;
+    String username = System.getenv("SAUCE_USERNAME");
+    String accessKey = System.getenv("SAUCE_ACCESS_KEY");
+    SauceREST sauceREST = new SauceREST(username, accessKey, DataCenter.US_WEST);
+    AccountsEndpoint accountsEndpoint = sauceREST.getAccountsEndpoint();
+
+    boolean sessionStarted = false;
+
+    while (!sessionStarted) {
+      UserConcurrency userConcurrency =
+          accountsEndpoint.getUserConcurrency(sauceREST.getUsername());
+      Organization org = userConcurrency.concurrency.organization;
+
+      if (org.current.vms < org.allowed.vms) {
+        startSession(testInfo);
+        sessionStarted = true;
+      } else {
+        System.out.println("Concurrency limit reached. Retrying in 10 seconds...");
+        Thread.sleep(10000);
+      }
+    }
+  }
+
+  private void startSession(TestInfo testInfo) {
     if (new Random().nextBoolean() && Boolean.getBoolean("tests.mixed")) {
       startMacSession(testInfo);
     } else {
@@ -105,6 +133,7 @@ public class TestBase {
       loopCommands(Duration.ofSeconds(randomDuration));
     }
   }
+
   protected void loopCommands(Duration duration) {
     int l = (int) Math.round(duration.toSeconds() / 5.0);
     IntStream.range(0, l)
