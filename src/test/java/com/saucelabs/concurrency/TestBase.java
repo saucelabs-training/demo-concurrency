@@ -63,6 +63,7 @@ public class TestBase {
       UserConcurrency userConcurrency =
           accountsEndpoint.getUserConcurrency(sauceREST.getUsername());
       Organization org = userConcurrency.concurrency.organization;
+      System.out.println("Current concurrency: " + org.current.vms);
 
       if (org.current.vms < org.allowed.vms) {
         startSession(testInfo);
