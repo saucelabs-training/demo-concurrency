@@ -60,13 +60,13 @@ public class TestBase {
     boolean sessionStarted = false;
 
     while (!sessionStarted) {
-      int randomDuration = new Random().nextInt(14000 + 1) + 1000;
+      int randomDuration = new Random().nextInt(4000 + 1) + 1000;
 
       Thread.sleep(randomDuration);
       UserConcurrency userConcurrency =
           accountsEndpoint.getUserConcurrency(sauceREST.getUsername());
       Organization org = userConcurrency.concurrency.organization;
-      System.out.println("Current concurrency: " + org.current.vms);
+      System.out.println("Current concurrency: " + org.current.vms + " Allowed concurrency: " + org.allowed.vms);
 
       if (org.current.vms < org.allowed.vms) {
         startSession(testInfo);
