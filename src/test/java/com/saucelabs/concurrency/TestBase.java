@@ -60,6 +60,9 @@ public class TestBase {
     boolean sessionStarted = false;
 
     while (!sessionStarted) {
+      int randomDuration = new Random().nextInt(14000 + 1) + 1000;
+
+      Thread.sleep(randomDuration);
       UserConcurrency userConcurrency =
           accountsEndpoint.getUserConcurrency(sauceREST.getUsername());
       Organization org = userConcurrency.concurrency.organization;
@@ -70,7 +73,6 @@ public class TestBase {
         sessionStarted = true;
       } else {
         System.out.println("Concurrency limit reached. Retrying in 10 seconds...");
-        Thread.sleep(10000);
       }
     }
   }
