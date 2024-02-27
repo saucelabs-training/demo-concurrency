@@ -1,5 +1,4 @@
-name: Team 5 Tests
-# Runs 50 Tests
+name: Team 5
 
 on:
   workflow_dispatch:

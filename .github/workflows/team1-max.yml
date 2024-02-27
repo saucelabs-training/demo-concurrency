@@ -1,4 +1,4 @@
-name: Team 1 Tests
+name: Team 1 Max
 
 on:
   workflow_dispatch:
