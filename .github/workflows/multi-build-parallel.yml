@@ -18,7 +18,7 @@ jobs:
           echo "SAUCE_USERNAME=${{ secrets.TEAM5_USERNAME }}" >> $GITHUB_ENV
           echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM5_ACCESS_KEY }}" >> $GITHUB_ENV
       - name: Run Build 1
-        run: mvn test -Dsurefire.parallel=25 -Dtest.build=1
+        run: mvn test -Dsurefire.parallel=25 -Dbuild.name=Build1
   build2:
     runs-on: ubuntu-latest
     steps:
@@ -33,5 +33,5 @@ jobs:
           echo "SAUCE_USERNAME=${{ secrets.TEAM5_USERNAME }}" >> $GITHUB_ENV
           echo "SAUCE_ACCESS_KEY=${{ secrets.TEAM5_ACCESS_KEY }}" >> $GITHUB_ENV
       - name: Run Build 2
-        run: mvn test -Dsurefire.parallel=25 -Dtest.build=2
+        run: mvn test -Dsurefire.parallel=25 -Dbuild.name=Build2
 

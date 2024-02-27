@@ -31,7 +31,10 @@ public class TestBase {
   private static final String buildNumber;
 
   static {
-    if (System.getenv("GITHUB_WORKFLOW") != null) {
+    if (System.getProperty("build.name") != null) {
+      buildName = System.getProperty("build.name");
+      buildNumber = System.getenv("GITHUB_RUN_NUMBER");
+    } else if (System.getenv("GITHUB_WORKFLOW") != null) {
       buildName = System.getenv("GITHUB_WORKFLOW");
       buildNumber = System.getenv("GITHUB_RUN_NUMBER");
     } else {

@@ -1,6 +1,5 @@
 name: Demonstrate Throttling
-# Windows Only
-# Only Run this on a legacy account
+# Only passes on a legacy account
 
 on:
   workflow_dispatch:
