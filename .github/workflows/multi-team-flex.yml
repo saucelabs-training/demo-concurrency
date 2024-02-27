@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger other workflows
-        run: echo "Main workflow completed. Triggering other workflows."
+        run: echo "Run team1.yml, team3.yml, team5.yml."

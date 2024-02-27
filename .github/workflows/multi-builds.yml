@@ -1,4 +1,4 @@
-name: One Team Multiple Builds
+name: Multiple Builds
 
 on:
   workflow_dispatch:
